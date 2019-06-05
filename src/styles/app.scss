@@ -1,2 +1,6 @@
-@import 'utils/variables';
-@import 'components/type';
+// Utilities
+@import "utils/normalize";
+@import "utils/variables";
+@import "utils/mixins";
+@import "utils/typography";
+@import "layout";
