@@ -18,6 +18,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings: "liga";
   font-family: IBM Plex Mono, monospace;
 }
 
@@ -27,26 +30,49 @@ ul {
   padding: 0;
 }
 
-// p {
-//   font-family: "Archivo Black";
-//   text-transform: initial;
-//   letter-spacing: 0;
-//   font-size: 3.5vh;
-//   line-height: 2;
-//   margin: 0;
-// }
+.link {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
 
-// a {
-//   color: #fff;
-//   text-decoration: none;
-// }
+  &--big {
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: 0;
+    font-size: 13vw;
+  }
+}
 
-// a:focus {
-//   outline: none;
-// }
+.workMenu {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  left: 0;
+  text-align: center;
+
+  &__item {
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.networkMenu {
+  &__item {
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+}
 
 .title {
-  font-size: 14px;
+  font-size: 15px;
   text-transform: uppercase;
   margin: 0;
   line-height: 22px;
@@ -55,23 +81,34 @@ ul {
   letter-spacing: 2px;
 
   &::after {
-    content: "Work";
+    content: "Menu";
+    text-transform: uppercase;
     display: block;
+    line-height: 22px;
+    height: 22px;
+    font-size: 15px;
+    transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 
-  // &__el {
-  //   transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
-  //   margin-top: 0;
-
-  //   &--switch {
-  //     transform: translateY(-28px);
-  //   }
-  // }
+  &__content {
+    position: relative;
+    display: block;
+    transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
 }
 
 .bigName {
   font-family: "Archivo Black", sans-serif;
-  font-size: 11vw;
+  font-size: 15vw;
+  margin: 0;
+  line-height: 0.8;
+  white-space: nowrap;
+  text-transform: uppercase;
+  align-self: center;
+  position: relative;
+  top: 50%;
+  font-weight: 400;
+  letter-spacing: -2px;
 }
 
 .button {
@@ -81,14 +118,36 @@ ul {
   background-position: center;
   background-size: 95%;
   text-indent: 100%;
-  overflow: hidden;
   white-space: nowrap;
   border: 0;
   outline: none;
   padding: 0;
   width: 20px;
-  height: 22px;
+  height: 20px;
   transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+
+  &__clickArea {
+    position: absolute;
+    display: block;
+    top: -20px;
+    right: -20px;
+    height: 60px;
+    width: 60px;
+  }
+}
+
+.menuOpen {
+  .title {
+    &__content {
+      transform: translateY(-20px);
+    }
+
+    &::after {
+      transform: translateY(-20px);
+    }
+  }
 }
 
 // /* ----------------------------- */
