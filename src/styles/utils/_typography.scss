@@ -21,7 +21,7 @@ body {
   text-rendering: optimizeLegibility;
   font-variant-ligatures: common-ligatures;
   font-feature-settings: "liga";
-  font-family: IBM Plex Mono, monospace;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 ul {
@@ -147,6 +147,11 @@ ul {
     &::after {
       transform: translateY(-20px);
     }
+  }
+
+  .button {
+    background-image: url("../assets/images/cross.svg");
+    transform: rotateZ(90deg);
   }
 }
 

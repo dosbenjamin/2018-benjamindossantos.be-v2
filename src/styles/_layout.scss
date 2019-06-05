@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #141414;
+  background-color: #0a0a0a;
   // font-size: 14px;
   // font-weight: 400;
   // letter-spacing: 2px;
@@ -41,7 +41,7 @@
 
     height: 100%;
     width: 100vw;
-    background-color: #141414;
+    background-color: #0a0a0a;
     z-index: -2;
   }
 
@@ -149,13 +149,6 @@
 //   position: fixed;
 //   bottom: 0;
 //   width: 1px;
-// }
-
-// .section__button--open {
-//   background-image: url("../images/cross.svg");
-//   transform: rotateZ(90deg);
-//   width: 20px;
-//   height: auto;
 // }
 
 // .section--content {
