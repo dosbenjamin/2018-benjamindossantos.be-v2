@@ -15,7 +15,7 @@
 body {
   color: #fff;
   font-size: $size-text;
-  line-height: 1.5;
+  line-height: $leading;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -30,6 +30,16 @@ ul {
   padding: 0;
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: rythm-units(1);
+}
+
+::selection {
+  background-color: $c-black;
+  color: #fff;
+}
+
 .link {
   font-size: 14px;
   letter-spacing: 2px;
@@ -37,11 +47,61 @@ ul {
   text-decoration: none;
   text-transform: uppercase;
 
+  @include desktop {
+    position: relative;
+    display: inline-block;
+
+    &::before {
+      @include pseudo;
+
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      z-index: -1;
+      transform: scaleX(0);
+      transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1) 50ms;
+      transform-origin: left;
+      top: -1px;
+    }
+
+    &:hover {
+      color: #000;
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &--alone {
+    @include desktop {
+      width: 63px;
+    }
+  }
+
   &--big {
     font-family: "Archivo Black", sans-serif;
     letter-spacing: 0;
-    font-size: 13vw;
+    font-size: 13vmin;
+    transition: color 250ms;
+
+    @include desktop {
+      font-size: 7vmin;
+      width: inherit;
+
+      &::before {
+        display: none;
+      }
+
+      &:hover {
+        color: #434343;
+      }
+    }
   }
+}
+
+.lineBreak {
+  display: block;
 }
 
 .workMenu {
@@ -63,10 +123,8 @@ ul {
 
 .networkMenu {
   &__item {
-    line-height: 1;
-
     &:not(:last-child) {
-      margin-bottom: 15px;
+      margin-bottom: 5px;
     }
   }
 }
@@ -106,16 +164,36 @@ ul {
   text-transform: uppercase;
   align-self: center;
   position: relative;
-  top: 50%;
+  top: 40vmax;
+  left: -2px;
   font-weight: 400;
   letter-spacing: -2px;
+
+  @include landscape {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14.75vw;
+  }
+
+  @include tablet {
+    font-size: 14.65vw;
+  }
+
+  @include desktop {
+    font-size: 9vw;
+    top: 65%;
+  }
+
+  @include desktopXL {
+    font-size: 8vw;
+    top: 40vmin;
+  }
 }
 
 .button {
   background-image: url("../assets/images/burger.svg");
   background-color: inherit;
   background-repeat: no-repeat;
-  background-position: center;
   background-size: 95%;
   text-indent: 100%;
   white-space: nowrap;
@@ -127,6 +205,11 @@ ul {
   transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
+
+  @include desktop {
+    margin-right: 25px;
+    cursor: pointer;
+  }
 
   &__clickArea {
     position: absolute;
@@ -141,11 +224,11 @@ ul {
 .menuOpen {
   .title {
     &__content {
-      transform: translateY(-20px);
+      transform: translateY(-22px);
     }
 
     &::after {
-      transform: translateY(-20px);
+      transform: translateY(-22px);
     }
   }
 
@@ -154,150 +237,3 @@ ul {
     transform: rotateZ(90deg);
   }
 }
-
-// /* ----------------------------- */
-// @media (min-width: 980px) {
-//   body {
-//     -webkit-box-align: center;
-//     -ms-flex-align: center;
-//     align-items: center;
-//   }
-
-//   a {
-//     position: relative;
-//     width: -webkit-max-content;
-//     width: -moz-max-content;
-//     width: max-content;
-//     width: -moz-fit-content;
-//   }
-
-//   a:hover {
-//     color: #000;
-//     -webkit-transition: 200ms;
-//     -o-transition: 200ms;
-//     transition: 200ms;
-//   }
-
-//   a::before {
-//     content: "";
-//     background-color: #fff;
-//     position: absolute;
-//     z-index: -1;
-//     width: 0;
-//     height: 23px;
-//     top: 3px;
-//     -webkit-transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1) 50ms;
-//     -o-transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1) 50ms;
-//     transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1) 50ms;
-//   }
-
-//   a:hover::before {
-//     width: 100%;
-//   }
-
-//   .section {
-//     width: 60vw;
-//     margin: 0;
-//   }
-
-//   .section__button {
-//     margin-right: 25px;
-//   }
-
-//   .section__big-name {
-//     font-size: 11vw;
-//   }
-
-//   .section__big-name::before,
-//   .section__big-name::after {
-//     background-color: #fff;
-//     content: "";
-//     height: 100%;
-//     opacity: 0.05;
-//     position: fixed;
-//     bottom: 0;
-//     width: 1px;
-//   }
-
-//   .section__big-name::before {
-//     margin-left: 0.75%;
-//   }
-
-//   .section__big-name::after {
-//     margin-left: -0.2%;
-//   }
-
-//   .section__image {
-//     display: block;
-//   }
-
-//   .section--header {
-//     -webkit-box-orient: horizontal;
-//     -webkit-box-direction: reverse;
-//     -ms-flex-direction: row-reverse;
-//     flex-direction: row-reverse;
-//     -webkit-box-pack: end;
-//     -ms-flex-pack: end;
-//     justify-content: flex-end;
-//   }
-
-//   .section--content {
-//     height: 60vh;
-//   }
-// }
-
-// @media (min-width: 1650px) {
-//   .section {
-//     width: 40vw;
-//   }
-
-//   .section__big-name {
-//     top: 15%;
-//     font-size: 8vw;
-//   }
-
-//   .section__big-name::before {
-//     margin-left: 0.5%;
-//   }
-
-//   .section__image {
-//     width: 50%;
-//   }
-
-//   .section__image::after {
-//     right: 30%;
-//   }
-// }
-
-// @media (max-height: 800px) and (min-width: 980px) {
-//   .section {
-//     width: 45vw;
-//   }
-
-//   .section__big-name {
-//     top: 12%;
-//     font-size: 8vw;
-//   }
-
-//   .section__big-name::before {
-//     margin-left: 0.5%;
-//   }
-
-//   .section__image {
-//     width: 45%;
-//   }
-
-//   .section__image::after {
-//     right: 27.5%;
-//   }
-
-//   .section--content {
-//     height: 60vh;
-//   }
-// }
-
-// @media (max-width: 980px) and (orientation: landscape) {
-//   .section__big-name {
-//     top: 0;
-//   }
-// }

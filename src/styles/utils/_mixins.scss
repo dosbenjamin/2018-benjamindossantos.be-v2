@@ -2,3 +2,33 @@
   content: "";
   position: absolute;
 }
+
+@mixin landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 500px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktopXL {
+  @media (min-width: 1360px) {
+    @content;
+  }
+}
+
+@mixin case {
+  .container--caseStudy {
+    @content;
+  }
+}
