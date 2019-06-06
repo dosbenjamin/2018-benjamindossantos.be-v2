@@ -82,8 +82,8 @@
     top: -10px;
 
     @include desktop {
-      height: 60vh;
-      width: 45vw;
+      height: 65vh;
+      width: 50vw;
       max-width: 1024px;
     }
 
@@ -227,8 +227,12 @@
       &--header {
         display: block;
         width: 100%;
-        margin-bottom: rythm-units(2);
+        margin-bottom: rythm-units(1);
         top: initial;
+
+        @include tablet {
+          margin-bottom: rythm-units(2);
+        }
 
         @include desktop {
           margin-bottom: rythm-units-desktop(2);
