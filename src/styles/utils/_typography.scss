@@ -182,9 +182,6 @@ p {
   font-weight: 600;
 
   @include desktop {
-    position: relative;
-    display: inline-block;
-
     &:hover {
       color: #434343;
     }
@@ -293,11 +290,5 @@ p {
   .button {
     background-image: url("../assets/images/cross.svg");
     transform: rotateZ(90deg);
-  }
-}
-
-.container--caseStudy {
-  .title {
-    overflow: visible;
   }
 }

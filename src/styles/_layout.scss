@@ -38,11 +38,11 @@
     position: initial;
     display: block;
     padding: rythm-units(3) rythm-units(1);
-    overflow-x: hidden;
 
     @include tablet {
       width: 75vw;
       max-width: 750px;
+      margin: 0 auto;
       padding: rythm-units(4) rythm-units(1);
     }
 
@@ -132,6 +132,18 @@
     }
   }
 
+  &--case {
+    margin-bottom: rythm-units(2.5);
+
+    .link {
+      margin-top: rythm-units(2);
+
+      @include desktop {
+        margin-top: rythm-units-desktop(2);
+      }
+    }
+  }
+
   &--footer {
     margin-top: rythm-units(4);
     margin-bottom: rythm-units(1);
@@ -144,22 +156,6 @@
     @include desktop {
       margin-top: rythm-units-desktop(5);
       margin-bottom: rythm-units-desktop(1);
-    }
-  }
-
-  &--case {
-    margin-bottom: rythm-units(2.5);
-
-    .link {
-      margin-top: rythm-units(2);
-
-      @include desktop {
-        margin-top: rythm-units-desktop(2);
-      }
-    }
-
-    @include tablet {
-      margin-bottom: rythm-units(3.5);
     }
   }
 }
@@ -244,12 +240,10 @@
 
 .image {
   width: 100vw;
-  height: auto;
   object-fit: cover;
   position: relative;
   margin-top: rythm-units(1);
   margin-bottom: rythm-units(2);
-  display: block;
   left: rythm-units(-1);
 
   @include tablet {
@@ -259,6 +253,8 @@
   }
 
   @include desktop {
+    margin-top: rythm-units-desktop(1);
+    margin-bottom: rythm-units-desktop(2);
     width: 160%;
     left: -30%;
   }
