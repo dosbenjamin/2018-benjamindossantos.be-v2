@@ -2,14 +2,16 @@
   @return $leading * $size-text * $number;
 }
 
+@function rythm-units-desktop($number) {
+  @return $leading-desktop * $size-text-desktop * $number;
+}
+
 @keyframes loading {
   from {
-    visibility: hidden;
     opacity: 0;
   }
 
   to {
-    visibility: visible;
     opacity: 1;
   }
 }
@@ -22,12 +24,32 @@
   left: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: $c-black;
+  animation-name: loading;
+  animation-duration: 1000ms;
+
+  &--caseStudy {
+    height: initial;
+    width: initial;
+    position: initial;
+    display: block;
+    padding: rythm-units(3) rythm-units(1);
+    overflow-x: hidden;
+
+    @include tablet {
+      width: 75vw;
+      max-width: 750px;
+      padding: rythm-units(4) rythm-units(1);
+    }
+
+    @include desktop {
+      padding: rythm-units-desktop(4) rythm-units-desktop(1);
+    }
+  }
 
   &::before {
     @include pseudo;
@@ -35,7 +57,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
     background-color: $c-black;
     z-index: -3;
   }
@@ -44,7 +66,7 @@
     @include pseudo;
 
     height: 100%;
-    width: 100vw;
+    width: 100%;
     background-image: url("../assets/images/noise.svg");
     background-size: 20vmin;
     top: 0;
@@ -57,9 +79,7 @@
     height: 75vh;
     width: 80vw;
     position: relative;
-    top: -11px;
-    animation-name: loading;
-    animation-duration: 600ms;
+    top: -10px;
 
     @include desktop {
       height: 60vh;
@@ -72,68 +92,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      top: 11px;
+      top: 10px;
       z-index: 4;
 
       @include desktop {
         flex-direction: row-reverse;
         justify-content: flex-end;
       }
-    }
-  }
-}
-
-.container[data-page="caseStudy"] {
-  height: initial;
-  width: initial;
-  position: initial;
-  display: block;
-  padding: rythm-units(2) rythm-units(1);
-
-  .container {
-    &__wrapper {
-      &--header {
-        display: block;
-        width: 100%;
-        margin-bottom: rythm-units(2);
-        top: initial;
-      }
-    }
-  }
-
-  .section:not(:first-child) {
-    margin-bottom: rythm-units(2);
-  }
-
-  .link {
-    &::before {
-      content: "<";
-    }
-  }
-
-  .title {
-    font-family: "Archivo Black", sans-serif;
-    font-size: 1.777em;
-    height: initial;
-    margin-top: rythm-units(2);
-    line-height: 1.1;
-
-    &--medium {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 1.333em;
-      margin: 0 0 rythm-units(1) 0;
-
-      &::after {
-        display: none;
-      }
-    }
-
-    &::after {
-      content: "";
-      width: 100%;
-      height: 1px;
-      background-color: #fff;
-      margin-top: rythm-units(1);
     }
   }
 }
@@ -166,6 +131,37 @@
       transition: opacity 350ms cubic-bezier(0.23, 1, 0.32, 1);
     }
   }
+
+  &--footer {
+    margin-top: rythm-units(4);
+    margin-bottom: rythm-units(1);
+
+    @include tablet {
+      margin-top: rythm-units(5);
+      margin-bottom: rythm-units(2);
+    }
+
+    @include desktop {
+      margin-top: rythm-units-desktop(5);
+      margin-bottom: rythm-units-desktop(1);
+    }
+  }
+
+  &--case {
+    margin-bottom: rythm-units(2.5);
+
+    .link {
+      margin-top: rythm-units(2);
+
+      @include desktop {
+        margin-top: rythm-units-desktop(2);
+      }
+    }
+
+    @include tablet {
+      margin-bottom: rythm-units(3.5);
+    }
+  }
 }
 
 .photo {
@@ -186,6 +182,32 @@
   }
 }
 
+.footerMenu {
+  text-align: center;
+
+  &__strong {
+    font-weight: 600;
+    margin-bottom: rythm-units(1);
+    display: block;
+
+    @include desktop {
+      margin-bottom: rythm-units-desktop(1);
+    }
+  }
+
+  &__list {
+    margin-bottom: rythm-units(2);
+
+    @include desktop {
+      margin-bottom: rythm-units-desktop(2);
+    }
+  }
+
+  &__listItem {
+    line-height: 1;
+  }
+}
+
 .menuOpen {
   .section {
     &--overlay {
@@ -196,6 +218,57 @@
         opacity: 1;
       }
     }
+  }
+}
+
+.container--caseStudy {
+  &::after {
+    position: fixed;
+  }
+
+  .container {
+    &__wrapper {
+      &--header {
+        display: block;
+        width: 100%;
+        margin-bottom: rythm-units(2);
+        top: initial;
+
+        @include desktop {
+          margin-bottom: rythm-units-desktop(2);
+        }
+      }
+    }
+  }
+}
+
+.image {
+  width: 100vw;
+  height: auto;
+  object-fit: cover;
+  position: relative;
+  margin-top: rythm-units(1);
+  margin-bottom: rythm-units(2);
+  display: block;
+  left: rythm-units(-1);
+
+  @include tablet {
+    left: -12.5vw;
+    margin-top: rythm-units(2);
+    margin-bottom: rythm-units(3);
+  }
+
+  @include desktop {
+    width: 160%;
+    left: -30%;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  + .title--small {
+    margin-top: 0;
   }
 }
 

@@ -1,8 +1,15 @@
 @font-face {
   font-family: "IBM Plex Mono";
-  src: url("../assets/fonts/ibm-plex-mono_regular.woff2");
+  src: url("../assets/fonts/IBMPlexMono-Regular.woff2"), url("../assets/fonts/IBMPlexMono-Regular.woff");
   font-style: normal;
   font-weight: 400;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../assets/fonts/IBMPlexMono-Bold.woff2"), url("../assets/fonts/IBMPlexMono-Bold.woff");
+  font-style: normal;
+  font-weight: 600;
 }
 
 @font-face {
@@ -22,6 +29,11 @@ body {
   font-variant-ligatures: common-ligatures;
   font-feature-settings: "liga";
   font-family: "IBM Plex Mono", monospace;
+
+  @include desktop {
+    line-height: $leading-desktop;
+    font-size: $size-text-desktop;
+  }
 }
 
 ul {
@@ -33,70 +45,13 @@ ul {
 p {
   margin-top: 0;
   margin-bottom: rythm-units(1);
-}
-
-::selection {
-  background-color: $c-black;
-  color: #fff;
-}
-
-.link {
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
 
   @include desktop {
-    position: relative;
-    display: inline-block;
-
-    &::before {
-      @include pseudo;
-
-      width: 100%;
-      height: 100%;
-      background-color: #fff;
-      z-index: -1;
-      transform: scaleX(0);
-      transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1) 50ms;
-      transform-origin: left;
-      top: -1px;
-    }
-
-    &:hover {
-      color: #000;
-
-      &::before {
-        transform: scaleX(1);
-      }
-    }
+    margin-bottom: rythm-units-desktop(1);
   }
 
-  &--alone {
-    @include desktop {
-      width: 63px;
-    }
-  }
-
-  &--big {
-    font-family: "Archivo Black", sans-serif;
-    letter-spacing: 0;
-    font-size: 13vmin;
-    transition: color 250ms;
-
-    @include desktop {
-      font-size: 7vmin;
-      width: inherit;
-
-      &::before {
-        display: none;
-      }
-
-      &:hover {
-        color: #434343;
-      }
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -104,89 +59,145 @@ p {
   display: block;
 }
 
-.workMenu {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0;
-  left: 0;
-  text-align: center;
-
-  &__item {
-    line-height: 1;
-
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
-  }
-}
-
-.networkMenu {
-  &__item {
-    &:not(:last-child) {
-      margin-bottom: 5px;
-    }
-  }
+::selection {
+  background-color: $c-black;
+  color: #fff;
 }
 
 .title {
-  font-size: 15px;
+  font-weight: 400;
+  font-size: 1rem;
   text-transform: uppercase;
-  margin: 0;
-  line-height: 22px;
-  height: 22px;
-  overflow: hidden;
-  letter-spacing: 2px;
+  margin: 0 0 rythm-units(1) 0;
+  letter-spacing: 3px;
 
-  &::after {
-    content: "Menu";
-    text-transform: uppercase;
-    display: block;
-    line-height: 22px;
-    height: 22px;
-    font-size: 15px;
-    transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  &--medium {
+    font-size: 1.777em;
+
+    @include desktop {
+      margin: 0 0 rythm-units-desktop(1) 0;
+    }
+
+    + .title--small {
+      margin-top: rythm-units(0.5);
+
+      @include desktop {
+        margin-top: rythm-units-desktop(0.5);
+      }
+    }
+  }
+
+  &--small {
+    text-transform: initial;
+    margin-top: rythm-units(1);
+    margin-bottom: rythm-units(1);
+    letter-spacing: 0;
+    font-weight: 600;
+
+    @include desktop {
+      margin-top: rythm-units-desktop(1);
+      margin-bottom: rythm-units-desktop(1);
+    }
+  }
+
+  &--switch {
+    margin: 0;
+    overflow: hidden;
+    line-height: 1rem;
+    height: 1rem;
+
+    &::after {
+      content: "Menu";
+      display: block;
+      transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+    }
   }
 
   &__content {
-    position: relative;
     display: block;
     transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 }
 
-.bigName {
+.titleAlt {
   font-family: "Archivo Black", sans-serif;
-  font-size: 15vw;
-  margin: 0;
-  line-height: 0.8;
-  white-space: nowrap;
   text-transform: uppercase;
-  align-self: center;
-  position: relative;
-  top: 40vmax;
-  left: -2px;
+  font-size: 11vw;
+  margin-top: rythm-units(3);
+  line-height: 0.95;
   font-weight: 400;
-  letter-spacing: -2px;
-
-  @include landscape {
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14.75vw;
-  }
+  margin-bottom: 0;
 
   @include tablet {
-    font-size: 14.65vw;
+    margin-top: rythm-units(4);
+    font-size: 10vw;
   }
 
   @include desktop {
-    font-size: 9vw;
-    top: 65%;
+    margin-top: rythm-units-desktop(3);
+    font-size: 4.209em;
   }
 
-  @include desktopXL {
-    font-size: 8vw;
-    top: 40vmin;
+  &--bigName {
+    font-size: 15vw;
+    line-height: 0.8;
+    white-space: nowrap;
+    align-self: center;
+    position: relative;
+    top: 40vmax;
+    left: -2px;
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin: 0;
+
+    @include landscape {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14.75vw;
+    }
+
+    @include tablet {
+      font-size: 14.65vw;
+    }
+
+    @include desktop {
+      font-size: 9vw;
+      top: 65%;
+    }
+
+    @include desktopXL {
+      font-size: 8vw;
+      top: 40vmin;
+    }
+  }
+}
+
+.link {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 250ms;
+  font-weight: 600;
+
+  @include desktop {
+    position: relative;
+    display: inline-block;
+
+    &:hover {
+      color: #434343;
+    }
+  }
+
+  &--big {
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: 0;
+    font-size: 13vmin;
+
+    @include desktop {
+      font-size: 7vmin;
+    }
   }
 }
 
@@ -213,7 +224,6 @@ p {
 
   &__clickArea {
     position: absolute;
-    display: block;
     top: -20px;
     right: -20px;
     height: 60px;
@@ -221,19 +231,73 @@ p {
   }
 }
 
+.list {
+  margin-bottom: rythm-units(2);
+
+  @include desktop {
+    margin-bottom: rythm-units-desktop(2);
+  }
+
+  &__item {
+    position: relative;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      top: 0;
+      left: -16px;
+    }
+  }
+
+  + .title--small {
+    margin-top: 0;
+  }
+}
+
+.workMenu {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  left: 0;
+  text-align: center;
+
+  &__item {
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-bottom: rythm-units(0.5);
+    }
+  }
+}
+
+.networkMenu {
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: rythm-units(0.25);
+    }
+  }
+}
+
 .menuOpen {
   .title {
     &__content {
-      transform: translateY(-22px);
+      transform: translateY(-1rem);
     }
 
     &::after {
-      transform: translateY(-22px);
+      transform: translateY(-1rem);
     }
   }
 
   .button {
     background-image: url("../assets/images/cross.svg");
     transform: rotateZ(90deg);
+  }
+}
+
+.container--caseStudy {
+  .title {
+    overflow: visible;
   }
 }
