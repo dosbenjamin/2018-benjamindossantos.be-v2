@@ -134,12 +134,13 @@
 
   &--case {
     margin-bottom: rythm-units(2.5);
+    display: block;
 
     .link {
-      margin-top: rythm-units(2);
+      margin-top: rythm-units(1);
 
       @include desktop {
-        margin-top: rythm-units-desktop(2);
+        margin-top: rythm-units-desktop(1);
       }
     }
   }
@@ -175,6 +176,70 @@
 
   @include desktop {
     display: block;
+  }
+}
+
+.image {
+  width: 100vw;
+  object-fit: cover;
+  position: relative;
+  margin: rythm-units(2) 0 rythm-units(2) 0;
+  left: rythm-units(-1);
+  display: block;
+
+  @include tablet {
+    left: -12.5vw;
+    margin-top: rythm-units(3);
+    margin-bottom: rythm-units(3);
+  }
+
+  @include desktop {
+    margin-top: rythm-units-desktop(2);
+    margin-bottom: rythm-units-desktop(2);
+    width: 160%;
+    left: -30%;
+  }
+
+  + .image {
+    margin-top: 0;
+  }
+
+  &__item {
+    width: 100%;
+    display: block;
+  }
+
+  &__caption {
+    margin: 0 auto;
+    max-width: 18rem;
+    text-align: center;
+    width: 100%;
+    font-size: 0.75rem;
+    margin-top: rythm-units(1);
+
+    p {
+      margin-bottom: rythm-units(0.25);
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    @include tablet {
+      max-width: initial;
+    }
+
+    @include desktop {
+      margin-top: rythm-units-desktop(1);
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  + .title--small {
+    margin-top: 0;
   }
 }
 
@@ -218,6 +283,10 @@
 }
 
 .container--caseStudy {
+  &::before {
+    position: fixed;
+  }
+
   &::after {
     position: fixed;
   }
@@ -227,7 +296,7 @@
       &--header {
         display: block;
         width: 100%;
-        margin-bottom: rythm-units(1);
+        margin-bottom: rythm-units(2);
         top: initial;
 
         @include tablet {
@@ -241,68 +310,3 @@
     }
   }
 }
-
-.image {
-  width: 100vw;
-  object-fit: cover;
-  position: relative;
-  margin-top: rythm-units(1);
-  margin-bottom: rythm-units(2);
-  left: rythm-units(-1);
-
-  @include tablet {
-    left: -12.5vw;
-    margin-top: rythm-units(2);
-    margin-bottom: rythm-units(3);
-  }
-
-  @include desktop {
-    margin-top: rythm-units-desktop(1);
-    margin-bottom: rythm-units-desktop(2);
-    width: 160%;
-    left: -30%;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  + .title--small {
-    margin-top: 0;
-  }
-}
-
-// .container--load {
-//   opacity: 1;
-// }
-
-// .section--content {
-//   flex-direction: column;
-//   transition: visibility 350ms, opacity 350ms cubic-bezier(0.23, 1, 0.32, 1);
-// }
-
-// .section--opacity {
-//   opacity: 0.1;
-// }
-
-// .section--open {
-//   visibility: visible;
-// }
-
-// .section--open::before {
-//   opacity: 1;
-// }
-
-// .section--overlay p,
-// .section--overlay .section__links {
-//   position: relative;
-//   top: 20px;
-//   opacity: 0;
-//   transition: transform 350ms, opacity 450ms cubic-bezier(0.23, 1, 0.32, 1);
-// }
-
-// .section--open p,
-// .section--open .section__links {
-//   transform: translateY(-20px);
-//   opacity: 1;
-// }
