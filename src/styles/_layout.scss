@@ -17,7 +17,7 @@
 }
 
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -76,7 +76,7 @@
   }
 
   &__wrapper {
-    height: 75vh;
+    height: 75%;
     width: 80vw;
     position: relative;
     top: -10px;
