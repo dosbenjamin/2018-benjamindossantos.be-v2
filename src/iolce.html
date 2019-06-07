@@ -10,16 +10,16 @@
     <meta name="description" content="Case study du projet IOLCE de la section Design Web & Mobile de la HEAJ" />
     <meta itemprop="name" content="IOLCE - Case Study - Benjamin Dos Santos - vCard" />
     <meta itemprop="description" content="Case study du projet IOLCE de la section Design Web & Mobile de la HEAJ" />
-    <meta itemprop="image" content="https://benjamindossantos.be/assets/images/preview.png" />
+    <meta itemprop="image" content="https://benjamindossantos.be/assets/images/preview.svg" />
     <meta property="og:url" content="https://benjamindossantos.be" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="IOLCE - Case Study - Benjamin Dos Santos - vCard" />
     <meta property="og:description" content="Case study du projet IOLCE de la section Design Web & Mobile de la HEAJ" />
-    <meta property="og:image" content="https://benjamindossantos.be/assets/images/preview.png" />
+    <meta property="og:image" content="https://benjamindossantos.be/assets/images/preview.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="IOLCE - Case Study - Benjamin Dos Santos - vCard" />
     <meta name="twitter:description" content="Case study du projet IOLCE de la section Design Web & Mobile de la HEAJ" />
-    <meta name="twitter:image" content="https://benjamindossantos.be/assets/images/preview.png" />
+    <meta name="twitter:image" content="https://benjamindossantos.be/assets/images/preview.svg" />
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png" />
@@ -89,17 +89,43 @@
           paragraphe choisie, j’ai testé et sélectionné un rapport hiérarchique peu élevé et ai commencé à comparer différentes polices afin de trouver des hauteurs de x identiques entre la
           police de titre et celle de paragraphe.
         </p>
-        <img class="image" src="assets/images/iolce-typo.png" alt="" />
-        <ul class="list">
-          <li class="list__item">Paragraphe&thinsp;: Hanken Grotesk Regular 18px, hauteur 1.8</li>
-          <li class="list__item">Titre [h2]&thinsp;: Vesper Libre Medium 2.074em, hauteur 1.15</li>
-          <li class="list__item">Rapport hiérarchique&thinsp;: Minor Third 1.2</li>
-        </ul>
+        <figure class="image">
+          <img class="image__item" src="assets/images/iolce-typo.svg" alt="Composition typographique du projet" />
+          <figcaption class="image__caption">
+            Titre&thinsp;:&nbsp;2.074em, hauteur&thinsp;de&thinsp;ligne&thinsp;:&thinsp;115%, Vesper Libre&nbsp;Medium
+            <span class="lineBreak"></span>
+            Paragraphe&thinsp;:&nbsp;18px, hauteur&thinsp;de&thinsp;ligne&thinsp;:&thinsp;180%, Hanken&nbsp;Grotesk&nbsp;Regular
+            <span class="lineBreak"></span>
+            Rapport&nbsp;hiérarchique&thinsp;: Minor&thinsp;Third&thinsp;(1.2)
+          </figcaption>
+        </figure>
         <h4 class="title title--small">Moodboard</h4>
         <p>
           Pour m’aider dans la conception du design et pour garder de la cohérence, j’ai réalisé un moodbard avec des couleurs et des principes graphiques.
         </p>
-        <img class="image" src="assets/images/iolce-moodboard.png" alt="" />
+        <picture>
+          <source
+            srcset="
+              assets/images/iolce-moodboard-xlarge.webp 2048w,
+              assets/images/iolce-moodboard-large.webp  1500w,
+              assets/images/iolce-moodboard-medium.webp 1024w,
+              assets/images/iolce-moodboard-small.webp   500w
+            "
+            sizes="(max-width: 1024px) 100vw, 975px"
+            type="image/webp"
+          />
+          <source
+            srcset="
+              assets/images/iolce-moodboard-xlarge.jpeg 2048w,
+              assets/images/iolce-moodboard-large.jpeg  1500w,
+              assets/images/iolce-moodboard-medium.jpeg 1024w,
+              assets/images/iolce-moodboard-small.jpeg   500w
+            "
+            sizes="(max-width: 1024px) 100vw, 975px"
+            type="image/jpeg"
+          />
+          <img class="image" src="assets/images/iolce-moodboard-large.jpeg" alt="Moodboard du projet" />
+        </picture>
         <h4 class="title title--small">Layout</h4>
         <p>
           Enfin ! Me voilà sur Sketch pour la réalisation du design, pour commencer, j’ai choisi une grille de 4 colonnes (gouttières de 18px et extérieures de 36px). Après avoir mis en
@@ -110,7 +136,22 @@
           des multiples de la taille du corps de paragraphe (18px) et je les ai utilisés comme valeurs d’espacement vertical et comme hauteur pour tous les éléments (soulignements,
           photographies, logo, icônes, etc.).
         </p>
-        <img class="image" src="assets/images/iolce-ui.jpeg" alt="" />
+        <figure class="image">
+          <picture>
+            <source
+              srcset="assets/images/iolce-ui-xlarge.webp 2048w, assets/images/iolce-ui-large.webp 1500w, assets/images/iolce-ui-medium.webp 1024w, assets/images/iolce-ui-small.webp 500w"
+              sizes="(max-width: 1024px) 100vw, 975px"
+              type="image/webp"
+            />
+            <source
+              srcset="assets/images/iolce-ui-xlarge.jpeg 2048w, assets/images/iolce-ui-large.jpeg 1500w, assets/images/iolce-ui-medium.jpeg 1024w, assets/images/iolce-ui-small.jpeg 500w"
+              sizes="(max-width: 1024px) 100vw, 975px"
+              type="image/jpeg"
+            />
+            <img class="image__item" src="assets/images/iolce-ui-large.jpeg" alt="Aperçu du layout mobile" />
+          </picture>
+          <figcaption class="image__caption">Aperçu du layout mobile</figcaption>
+        </figure>
       </section>
       <section class="section section--case">
         <h3 class="title title--medium">Développement</h3>

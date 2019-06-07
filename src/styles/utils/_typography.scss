@@ -14,7 +14,7 @@
 
 @font-face {
   font-family: "Archivo Black";
-  src: url("../assets/fonts/archivo-black_regular.woff2");
+  src: url("../assets/fonts/ArchivoBlack-Regular.woff2"), url("../assets/fonts/ArchivoBlack-Regular.woff");
   font-style: normal;
   font-weight: 400;
 }
@@ -51,10 +51,6 @@ p {
   }
 
   &:last-child {
-    margin-bottom: 0;
-  }
-
-  &:only-of-type {
     margin-bottom: 0;
   }
 }
