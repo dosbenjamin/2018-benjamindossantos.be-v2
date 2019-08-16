@@ -110,17 +110,19 @@ p {
     overflow: hidden;
     line-height: 1rem;
     height: 1rem;
+    top: -1px;
+    position: relative;
 
     &::after {
       content: "Menu";
       display: block;
-      transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+      transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
     }
   }
 
   &__content {
     display: block;
-    transition: transform 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
   }
 }
 
@@ -177,20 +179,84 @@ p {
   }
 }
 
+@keyframes rectangle {
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .link {
   font-size: 0.75rem;
   letter-spacing: 2px;
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 250ms;
+  transition: color 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
   font-weight: 600;
   display: inline-block;
   width: fit-content;
+  position: relative;
+  text-indent: 100%;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 102%;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: -2px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  }
+
+  &--show {
+    color: #fff !important;
+    text-indent: initial;
+    overflow: visible;
+  }
+
+  &--loading {
+    transition: 0s;
+    color: transparent;
+    text-indent: initial;
+    overflow: visible;
+
+    &::after {
+      transform-origin: left;
+      animation-name: rectangle;
+      animation-duration: 700ms;
+      animation-iteration-count: 2;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(0.76, 0.005, 0.31, 1.005);
+    }
+  }
+
+  &--loadingReverse {
+    &::after {
+      animation-name: rectangle;
+      animation-duration: 700ms;
+      animation-iteration-count: 2;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(0.76, 0.005, 0.31, 1.005);
+      transform-origin: right;
+    }
+  }
 
   @include desktop {
+    &::after {
+      z-index: -1;
+    }
+
     &:hover {
-      color: #434343;
+      color: #000;
+
+      &::after {
+        transform: scaleX(1);
+      }
 
       &:focus {
         outline: 0;
@@ -238,7 +304,8 @@ p {
   padding: 0;
   width: 20px;
   height: 20px;
-  transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  transform-origin: center;
   position: relative;
   overflow: hidden;
 
@@ -268,6 +335,12 @@ p {
     right: -20px;
     height: 60px;
     width: 60px;
+  }
+
+  &::after {
+    content: "";
+    display: none;
+    background-image: url("../assets/images/cross.svg");
   }
 }
 
@@ -304,6 +377,7 @@ p {
 
   &__item {
     line-height: 1;
+    position: relative;
 
     &:not(:last-child) {
       margin-bottom: rythm-units(0.5);
