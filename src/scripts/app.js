@@ -25,7 +25,7 @@ button.addEventListener('click', e => {
       setTimeout(() => {
         overlay.classList.remove('section--overlayOpen')
         document.body.classList.remove('menuOpen')
-      }, 1200)
+      }, 1000)
     })
   } else {
     menuOpen = true
