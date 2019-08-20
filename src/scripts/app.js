@@ -3,55 +3,58 @@
 const button = document.querySelector('.button__clickArea')
 const overlay = document.querySelector('.section--overlay')
 const links = document.querySelectorAll('.workMenu__item .link')
+const networkMenu = document.querySelector('.networkMenu')
 let menuOpen = false
 
 button.addEventListener('click', e => {
   const button = e.target.parentElement
   button.disabled = true
   document.activeElement.blur()
-  document.body.classList.toggle('menuOpen')
 
   if (menuOpen) {
+    menuOpen = false
     links.forEach(link => {
-      link.classList.add('link--loadingReverse')
+      link.classList.add('link--loading')
+      link.classList.add('link--loadingRight')
       setTimeout(() => {
-        link.classList.add('link--loading')
-      }, 350)
-      setTimeout(() => {
+        networkMenu.classList.remove('networkMenu--open')
+        link.classList.remove('link--loadingRight')
+        link.classList.add('link--loadingLeft')
         link.classList.remove('link--show')
-      }, 650)
-      link.addEventListener('animationend', () => {
-        overlay.classList.add('section--alternate')
         overlay.classList.remove('section--overlayOpen')
-      })
-    })
-    overlay.addEventListener('transitionend', () => {
-      overlay.classList.remove('section--alternate')
-      button.disabled = false
-      menuOpen = false
-      console.log(menuOpen)
-
-      console.log('close')
+        document.body.classList.remove('menuOpen')
+      }, 650)
     })
   } else {
+    menuOpen = true
+    document.body.classList.add('menuOpen')
     overlay.classList.add('section--overlayOpen')
     links.forEach(link => {
       link.classList.add('link--loading')
+      link.classList.add('link--loadingLeft')
       setTimeout(() => {
-        link.classList.add('link--loadingReverse')
-      }, 350)
-      setTimeout(() => {
+        link.classList.remove('link--loadingLeft')
+        link.classList.add('link--loadingRight')
         link.classList.add('link--show')
+        networkMenu.classList.add('networkMenu--open')
       }, 650)
-      link.addEventListener('animationend', e => {
-        link.classList.remove('link--loadingReverse')
-        link.classList.remove('link--loading')
-        button.disabled = false
-        menuOpen = true
-        console.log(menuOpen)
-
-        console.log('open')
-      })
     })
   }
+
+  links.forEach(link => {
+    link.addEventListener('animationend', () => {
+      if (menuOpen) {
+        link.classList.remove('link--loadingRight')
+        link.classList.remove('link--loading')
+      } else {
+        link.classList.remove('link--loadingLeft')
+        link.classList.remove('link--loading')
+      }
+      button.disabled = false
+    })
+  })
+
+  overlay.addEventListener('transitionend', () => {
+    !menuOpen && overlay.classList.remove('section--alternate')
+  })
 })

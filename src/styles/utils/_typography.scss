@@ -179,7 +179,11 @@ p {
   }
 }
 
-@keyframes rectangle {
+@keyframes load {
+  from {
+    transform: scaleX(0);
+  }
+
   to {
     transform: scaleX(1);
   }
@@ -191,43 +195,68 @@ p {
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  transition: opacity 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
   font-weight: 600;
   display: inline-block;
   width: fit-content;
   position: relative;
-  text-indent: 100%;
-  overflow: hidden;
 
-  &::after {
-    content: "";
-    display: block;
-    width: 102%;
-    height: 100%;
-    background-color: #fff;
-    position: absolute;
-    top: 0;
-    left: -2px;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  &--big {
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: 0;
+    font-size: 8vmin;
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      width: 102%;
+      height: 100%;
+      background-color: #fff;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: scaleX(0);
+      transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+      transform-origin: right;
+    }
+
+    &::after {
+      left: -2px;
+    }
+
+    @include tablet {
+      font-size: 5vmin;
+    }
+
+    @include desktop {
+      font-size: 4vmin;
+
+      &:hover {
+        opacity: 1;
+
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
   }
 
-  &--show {
-    color: #fff !important;
-    text-indent: initial;
-    overflow: visible;
+  &--veryBig {
+    font-size: 13vmin;
+    color: transparent;
+
+    @include desktop {
+      font-size: 7vmin;
+    }
   }
 
   &--loading {
-    transition: 0s;
-    color: transparent;
-    text-indent: initial;
-    overflow: visible;
-
     &::after {
-      transform-origin: left;
-      animation-name: rectangle;
+      animation-name: load;
       animation-duration: 700ms;
       animation-iteration-count: 2;
       animation-direction: alternate;
@@ -235,28 +264,29 @@ p {
     }
   }
 
-  &--loadingReverse {
+  &--loadingRight {
     &::after {
-      animation-name: rectangle;
-      animation-duration: 700ms;
-      animation-iteration-count: 2;
-      animation-direction: alternate;
-      animation-timing-function: cubic-bezier(0.76, 0.005, 0.31, 1.005);
       transform-origin: right;
     }
   }
 
-  @include desktop {
+  &--loadingLeft {
     &::after {
+      transform-origin: left;
+    }
+  }
+
+  &--show {
+    color: #fff;
+  }
+
+  @include desktop {
+    &::before {
       z-index: -1;
     }
 
     &:hover {
-      color: #000;
-
-      &::after {
-        transform: scaleX(1);
-      }
+      opacity: 0.25;
 
       &:focus {
         outline: 0;
@@ -266,28 +296,6 @@ p {
     &:focus {
       outline: 2px solid #fff;
       outline-offset: 5px;
-    }
-  }
-
-  &--big {
-    font-family: "Archivo Black", sans-serif;
-    letter-spacing: 0;
-    font-size: 8vmin;
-
-    @include tablet {
-      font-size: 5vmin;
-    }
-
-    @include desktop {
-      font-size: 4vmin;
-    }
-  }
-
-  &--veryBig {
-    font-size: 13vmin;
-
-    @include desktop {
-      font-size: 7vmin;
     }
   }
 }
@@ -386,10 +394,19 @@ p {
 }
 
 .networkMenu {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+
   &__item {
     &:not(:last-child) {
       margin-bottom: rythm-units(0.25);
     }
+  }
+
+  &--open {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
