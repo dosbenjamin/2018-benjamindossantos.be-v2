@@ -21,23 +21,27 @@ button.addEventListener('click', e => {
         link.classList.remove('link--loadingRight')
         link.classList.add('link--loadingLeft')
         link.classList.remove('link--show')
+      }, 650)
+      setTimeout(() => {
         overlay.classList.remove('section--overlayOpen')
         document.body.classList.remove('menuOpen')
-      }, 650)
+      }, 1200)
     })
   } else {
     menuOpen = true
     document.body.classList.add('menuOpen')
     overlay.classList.add('section--overlayOpen')
     links.forEach(link => {
-      link.classList.add('link--loading')
-      link.classList.add('link--loadingLeft')
+      setTimeout(() => {
+        link.classList.add('link--loading')
+        link.classList.add('link--loadingLeft')
+      }, 700)
       setTimeout(() => {
         link.classList.remove('link--loadingLeft')
         link.classList.add('link--loadingRight')
         link.classList.add('link--show')
         networkMenu.classList.add('networkMenu--open')
-      }, 650)
+      }, 1350)
     })
   }
 
