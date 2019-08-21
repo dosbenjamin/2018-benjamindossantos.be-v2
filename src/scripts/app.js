@@ -25,23 +25,24 @@ button.addEventListener('click', e => {
       setTimeout(() => {
         overlay.classList.remove('section--overlayOpen')
         document.body.classList.remove('menuOpen')
-      }, 1000)
+      }, 775)
     })
   } else {
     menuOpen = true
     document.body.classList.add('menuOpen')
+    overlay.classList.add('section--show')
     overlay.classList.add('section--overlayOpen')
     links.forEach(link => {
       setTimeout(() => {
         link.classList.add('link--loading')
         link.classList.add('link--loadingLeft')
-      }, 700)
+      }, 400)
       setTimeout(() => {
         link.classList.remove('link--loadingLeft')
         link.classList.add('link--loadingRight')
         link.classList.add('link--show')
         networkMenu.classList.add('networkMenu--open')
-      }, 1350)
+      }, 1050)
     })
   }
 
@@ -59,6 +60,9 @@ button.addEventListener('click', e => {
   })
 
   overlay.addEventListener('transitionend', () => {
-    !menuOpen && overlay.classList.remove('section--alternate')
+    if (menuOpen) {
+    } else {
+      overlay.classList.remove('section--show')
+    }
   })
 })
