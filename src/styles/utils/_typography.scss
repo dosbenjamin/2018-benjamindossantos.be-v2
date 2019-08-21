@@ -116,13 +116,23 @@ p {
     &::after {
       content: "Menu";
       display: block;
-      transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+      transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1);
     }
   }
 
   &__content {
     display: block;
-    transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+    transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1);
+  }
+}
+
+@keyframes load {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
   }
 }
 
@@ -177,15 +187,52 @@ p {
       top: 43vmin;
     }
   }
-}
 
-@keyframes load {
-  from {
-    transform: scaleX(0);
+  &__item {
+    display: inline-block;
+    position: relative;
+    color: transparent;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 97%;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: scaleX(0);
+    }
   }
 
-  to {
-    transform: scaleX(1);
+  &__item--loading {
+    &::before {
+      animation-name: load;
+      animation-duration: 850ms;
+      animation-iteration-count: 2;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(0.725, 0, 0.275, 1);
+    }
+  }
+
+  &__item--loadingLeft {
+    &::before {
+      transform-origin: left;
+    }
+  }
+
+  &__item--loadingRight {
+    color: #fff;
+
+    &::before {
+      transform-origin: right;
+    }
+  }
+
+  &__item--show {
+    color: #fff;
   }
 }
 
@@ -195,18 +242,33 @@ p {
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  transition: opacity 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  transition: opacity 350ms cubic-bezier(0.725, 0, 0.275, 1);
   font-weight: 600;
   display: inline-block;
   width: fit-content;
   position: relative;
 
+  @include desktop {
+    &:hover {
+      opacity: 0.25;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    &:focus {
+      outline: 2px solid #fff;
+      outline-offset: 5px;
+    }
+  }
+
   &--big {
     font-family: "Archivo Black", sans-serif;
     letter-spacing: 0;
     font-size: 8vmin;
+    transition: all 700ms cubic-bezier(0.725, 0, 0.275, 1);
 
-    &::after,
     &::before {
       content: "";
       display: block;
@@ -219,12 +281,8 @@ p {
       left: 0;
       right: 0;
       transform: scaleX(0);
-      transition: transform 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+      transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1);
       transform-origin: right;
-    }
-
-    &::after {
-      left: -2px;
     }
 
     @include tablet {
@@ -235,6 +293,7 @@ p {
       font-size: 4vmin;
 
       &:hover {
+        color: #000;
         opacity: 1;
 
         &::before {
@@ -255,48 +314,31 @@ p {
   }
 
   &--loading {
-    &::after {
+    transition: 0s;
+
+    &::before {
       animation-name: load;
       animation-duration: 700ms;
       animation-iteration-count: 2;
       animation-direction: alternate;
-      animation-timing-function: cubic-bezier(0.76, 0.005, 0.31, 1.005);
+      animation-timing-function: cubic-bezier(0.725, 0, 0.275, 1);
     }
   }
 
   &--loadingRight {
-    &::after {
+    &::before {
       transform-origin: right;
     }
   }
 
   &--loadingLeft {
-    &::after {
+    &::before {
       transform-origin: left;
     }
   }
 
   &--show {
     color: #fff;
-  }
-
-  @include desktop {
-    &::before {
-      z-index: -1;
-    }
-
-    &:hover {
-      opacity: 0.25;
-
-      &:focus {
-        outline: 0;
-      }
-    }
-
-    &:focus {
-      outline: 2px solid #fff;
-      outline-offset: 5px;
-    }
   }
 }
 
@@ -312,7 +354,7 @@ p {
   padding: 0;
   width: 20px;
   height: 20px;
-  transition: all 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  transition: all 700ms cubic-bezier(0.725, 0, 0.275, 1);
   transform-origin: center;
   position: relative;
   overflow: hidden;
@@ -396,7 +438,7 @@ p {
 .networkMenu {
   visibility: hidden;
   opacity: 0;
-  transition: all 700ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+  transition: all 700ms cubic-bezier(0.725, 0, 0.275, 1);
 
   &__item {
     &:not(:last-child) {

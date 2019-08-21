@@ -4,7 +4,24 @@ const button = document.querySelector('.button__clickArea')
 const overlay = document.querySelector('.section--overlay')
 const links = document.querySelectorAll('.workMenu__item .link')
 const networkMenu = document.querySelector('.networkMenu')
+const titles = document.querySelectorAll('.titleAlt__item')
 let menuOpen = false
+
+titles.forEach(title => {
+  setTimeout(() => {
+    title.classList.add('titleAlt__item--loading')
+    title.classList.add('titleAlt__item--loadingLeft')
+  }, 200)
+  setTimeout(() => {
+    title.classList.remove('titleAlt__item--loadingLeft')
+    title.classList.add('titleAlt__item--loadingRight')
+  }, 1000)
+  title.addEventListener('animationend', () => {
+    title.classList.add('titleAlt__item--show')
+    title.classList.remove('titleAlt__item--loading')
+    title.classList.remove('titleAlt__item--loadingRight')
+  })
+})
 
 button.addEventListener('click', e => {
   const button = e.target.parentElement
@@ -25,7 +42,7 @@ button.addEventListener('click', e => {
       setTimeout(() => {
         overlay.classList.remove('section--overlayOpen')
         document.body.classList.remove('menuOpen')
-      }, 775)
+      }, 950)
     })
   } else {
     menuOpen = true
@@ -36,13 +53,13 @@ button.addEventListener('click', e => {
       setTimeout(() => {
         link.classList.add('link--loading')
         link.classList.add('link--loadingLeft')
-      }, 400)
+      }, 700)
       setTimeout(() => {
         link.classList.remove('link--loadingLeft')
         link.classList.add('link--loadingRight')
         link.classList.add('link--show')
         networkMenu.classList.add('networkMenu--open')
-      }, 1050)
+      }, 1350)
     })
   }
 

@@ -129,7 +129,7 @@
       left: 0;
       background-color: rgba(0, 0, 0, 0.9);
       z-index: -1;
-      transition: transform 1000ms cubic-bezier(0.76, 0.005, 0.31, 1.005);
+      transition: transform 1000ms cubic-bezier(0.725, 0, 0.275, 1);
       transform: scaleX(0);
       transform-origin: left;
     }
