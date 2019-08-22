@@ -4,32 +4,15 @@ const button = document.querySelector('.button__clickArea')
 const overlay = document.querySelector('.section--overlay')
 const links = document.querySelectorAll('.workMenu__item .link')
 const networkMenu = document.querySelector('.networkMenu')
-const titles = document.querySelectorAll('.titleAlt__item')
 let menuOpen = false
-
-titles.forEach(title => {
-  setTimeout(() => {
-    title.classList.add('titleAlt__item--loading')
-    title.classList.add('titleAlt__item--loadingLeft')
-  }, 200)
-  setTimeout(() => {
-    title.classList.remove('titleAlt__item--loadingLeft')
-    title.classList.add('titleAlt__item--loadingRight')
-  }, 1000)
-  title.addEventListener('animationend', () => {
-    title.classList.add('titleAlt__item--show')
-    title.classList.remove('titleAlt__item--loading')
-    title.classList.remove('titleAlt__item--loadingRight')
-  })
-})
 
 button.addEventListener('click', e => {
   const button = e.target.parentElement
   button.disabled = true
   document.activeElement.blur()
+  console.log(menuOpen)
 
   if (menuOpen) {
-    menuOpen = false
     links.forEach(link => {
       link.classList.add('link--loading')
       link.classList.add('link--loadingRight')
@@ -45,7 +28,6 @@ button.addEventListener('click', e => {
       }, 950)
     })
   } else {
-    menuOpen = true
     document.body.classList.add('menuOpen')
     overlay.classList.add('section--show')
     overlay.classList.add('section--overlayOpen')
@@ -63,23 +45,25 @@ button.addEventListener('click', e => {
     })
   }
 
+  overlay.addEventListener('transitionend', e => {
+    if (menuOpen && e.propertyName === 'transform') {
+      overlay.classList.remove('section--show')
+      button.disabled = false
+      menuOpen = false
+    }
+  })
+
   links.forEach(link => {
     link.addEventListener('animationend', () => {
       if (menuOpen) {
-        link.classList.remove('link--loadingRight')
-        link.classList.remove('link--loading')
-      } else {
         link.classList.remove('link--loadingLeft')
         link.classList.remove('link--loading')
+      } else {
+        link.classList.remove('link--loadingRight')
+        link.classList.remove('link--loading')
+        menuOpen = true
+        button.disabled = false
       }
-      button.disabled = false
     })
-  })
-
-  overlay.addEventListener('transitionend', () => {
-    if (menuOpen) {
-    } else {
-      overlay.classList.remove('section--show')
-    }
   })
 })

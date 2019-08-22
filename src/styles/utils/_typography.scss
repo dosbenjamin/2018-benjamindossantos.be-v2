@@ -187,53 +187,6 @@ p {
       top: 43vmin;
     }
   }
-
-  &__item {
-    display: inline-block;
-    position: relative;
-    color: transparent;
-
-    &::before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 97%;
-      background-color: #fff;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      transform: scaleX(0);
-    }
-  }
-
-  &__item--loading {
-    &::before {
-      animation-name: load;
-      animation-duration: 850ms;
-      animation-iteration-count: 2;
-      animation-direction: alternate;
-      animation-timing-function: cubic-bezier(0.725, 0, 0.275, 1);
-    }
-  }
-
-  &__item--loadingLeft {
-    &::before {
-      transform-origin: left;
-    }
-  }
-
-  &__item--loadingRight {
-    color: #fff;
-
-    &::before {
-      transform-origin: right;
-    }
-  }
-
-  &__item--show {
-    color: #fff;
-  }
 }
 
 .link {
