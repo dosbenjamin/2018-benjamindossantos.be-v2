@@ -141,12 +141,6 @@
     }
   }
 
-  &--alternate {
-    &::before {
-      transform-origin: right;
-    }
-  }
-
   &--show {
     visibility: visible;
   }

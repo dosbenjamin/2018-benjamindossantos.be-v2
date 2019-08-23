@@ -2,68 +2,92 @@
 
 const button = document.querySelector('.button__clickArea')
 const overlay = document.querySelector('.section--overlay')
-const links = document.querySelectorAll('.workMenu__item .link')
+const links = document.querySelectorAll('.link--big')
 const networkMenu = document.querySelector('.networkMenu')
 let menuOpen = false
 
-button.addEventListener('click', e => {
-  const button = e.target.parentElement
-  button.disabled = true
-  document.activeElement.blur()
-  console.log(menuOpen)
+let ended = false
 
-  if (menuOpen) {
-    links.forEach(link => {
-      link.classList.add('link--loading')
-      link.classList.add('link--loadingRight')
-      setTimeout(() => {
-        networkMenu.classList.remove('networkMenu--open')
-        link.classList.remove('link--loadingRight')
-        link.classList.add('link--loadingLeft')
-        link.classList.remove('link--show')
-      }, 650)
-      setTimeout(() => {
-        overlay.classList.remove('section--overlayOpen')
-        document.body.classList.remove('menuOpen')
-      }, 950)
-    })
-  } else {
-    document.body.classList.add('menuOpen')
-    overlay.classList.add('section--show')
-    overlay.classList.add('section--overlayOpen')
-    links.forEach(link => {
-      setTimeout(() => {
-        link.classList.add('link--loading')
-        link.classList.add('link--loadingLeft')
-      }, 700)
-      setTimeout(() => {
-        link.classList.remove('link--loadingLeft')
-        link.classList.add('link--loadingRight')
-        link.classList.add('link--show')
-        networkMenu.classList.add('networkMenu--open')
-      }, 1350)
-    })
-  }
+const homepage = () => {
+  button.addEventListener('click', e => {
+    const button = e.target.parentElement
+    button.disabled = true
+    document.activeElement.blur()
 
-  overlay.addEventListener('transitionend', e => {
-    if (menuOpen && e.propertyName === 'transform') {
-      overlay.classList.remove('section--show')
-      button.disabled = false
+    if (menuOpen) {
       menuOpen = false
+      links.forEach(link => {
+        link.classList.add('link--loading')
+        link.classList.add('link--loadingRight')
+        setTimeout(() => {
+          networkMenu.classList.remove('networkMenu--open')
+          link.classList.remove('link--loadingRight')
+          link.classList.add('link--loadingLeft')
+          link.classList.remove('link--show')
+        }, 650)
+        setTimeout(() => {
+          overlay.classList.remove('section--overlayOpen')
+          document.body.classList.remove('menuOpen')
+        }, 950)
+      })
+    } else {
+      menuOpen = true
+      document.body.classList.add('menuOpen')
+      overlay.classList.add('section--show')
+      overlay.classList.add('section--overlayOpen')
+      links.forEach(link => {
+        setTimeout(() => {
+          link.classList.add('link--loading')
+          link.classList.add('link--loadingLeft')
+        }, 700)
+        setTimeout(() => {
+          link.classList.remove('link--loadingLeft')
+          link.classList.add('link--loadingRight')
+          link.classList.add('link--show')
+          networkMenu.classList.add('networkMenu--open')
+        }, 1350)
+      })
     }
-  })
 
-  links.forEach(link => {
-    link.addEventListener('animationend', () => {
-      if (menuOpen) {
-        link.classList.remove('link--loadingLeft')
-        link.classList.remove('link--loading')
-      } else {
-        link.classList.remove('link--loadingRight')
-        link.classList.remove('link--loading')
-        menuOpen = true
+    links.forEach(link => {
+      link.style.pointerEvents = 'none'
+      link.addEventListener('animationend', e => {
+        if (menuOpen) {
+          link.classList.remove('link--loading')
+          link.classList.remove('link--loadingRight')
+          link.style.removeProperty('pointer-events')
+          button.disabled = false
+        } else {
+          link.classList.remove('link--loadingLeft')
+          link.classList.remove('link--loading')
+        }
+      })
+    })
+
+    overlay.addEventListener('transitionend', e => {
+      if (!menuOpen && e.propertyName === 'transform' && e.target === overlay) {
+        overlay.classList.remove('section--show')
         button.disabled = false
       }
     })
   })
+}
+
+links.forEach(link => {
+  link.addEventListener('transitionend', e => {
+    if (e.elapsedTime === 0.7 && e.propertyName === 'transform') {
+      ended = true
+      e.target.classList.remove('link--loadingRight')
+    } else {
+      ended = false
+    }
+  })
+  link.addEventListener('mouseenter', () => {
+    ended = false
+  })
+  link.addEventListener('mouseout', e => {
+    ended && e.target.classList.add('link--loadingRight')
+  })
 })
+
+window.location === 'https://benjamindossantos.be/' && homepage()
