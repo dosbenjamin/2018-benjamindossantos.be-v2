@@ -5,13 +5,11 @@ const overlay = document.querySelector('.section--overlay')
 const links = document.querySelectorAll('.link--big')
 const networkMenu = document.querySelector('.networkMenu')
 let menuOpen = false
-
 let ended = false
 
-const homepage = () => {
+button !== null &&
   button.addEventListener('click', e => {
     const button = e.target.parentElement
-    // button.disabled = true
     button.style.pointerEvents = 'none'
     document.activeElement.blur()
 
@@ -57,8 +55,7 @@ const homepage = () => {
           link.classList.remove('link--loading')
           link.classList.remove('link--loadingRight')
           link.style.removeProperty('pointer-events')
-                    button.style.removeProperty('pointer-events')
-
+          button.style.removeProperty('pointer-events')
         } else {
           link.classList.remove('link--loadingLeft')
           link.classList.remove('link--loading')
@@ -69,12 +66,10 @@ const homepage = () => {
     overlay.addEventListener('transitionend', e => {
       if (!menuOpen && e.propertyName === 'transform' && e.target === overlay) {
         overlay.classList.remove('section--show')
-                            button.style.removeProperty('pointer-events')
-
+        button.style.removeProperty('pointer-events')
       }
     })
   })
-}
 
 links.forEach(link => {
   link.addEventListener('transitionend', e => {
@@ -92,7 +87,3 @@ links.forEach(link => {
     ended && e.target.classList.add('link--loadingRight')
   })
 })
-
-homepage()
-window.location.href === 'https://benjamindossantos.be/' && homepage()
-window.location.href === 'https://benjamindossantos.be/index.html' && homepage()
