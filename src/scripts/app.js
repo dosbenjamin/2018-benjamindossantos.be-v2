@@ -11,7 +11,8 @@ let ended = false
 const homepage = () => {
   button.addEventListener('click', e => {
     const button = e.target.parentElement
-    button.disabled = true
+    // button.disabled = true
+    button.style.pointerEvents = 'none'
     document.activeElement.blur()
 
     if (menuOpen) {
@@ -56,7 +57,8 @@ const homepage = () => {
           link.classList.remove('link--loading')
           link.classList.remove('link--loadingRight')
           link.style.removeProperty('pointer-events')
-          button.disabled = false
+                    button.style.removeProperty('pointer-events')
+
         } else {
           link.classList.remove('link--loadingLeft')
           link.classList.remove('link--loading')
@@ -67,7 +69,8 @@ const homepage = () => {
     overlay.addEventListener('transitionend', e => {
       if (!menuOpen && e.propertyName === 'transform' && e.target === overlay) {
         overlay.classList.remove('section--show')
-        button.disabled = false
+                            button.style.removeProperty('pointer-events')
+
       }
     })
   })
@@ -90,4 +93,6 @@ links.forEach(link => {
   })
 })
 
-window.location === 'https://benjamindossantos.be/' && homepage()
+homepage()
+window.location.href === 'https://benjamindossantos.be/' && homepage()
+window.location.href === 'https://benjamindossantos.be/index.html' && homepage()

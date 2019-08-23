@@ -3,6 +3,7 @@
   src: url("../assets/fonts/IBMPlexMono-Regular.woff2"), url("../assets/fonts/IBMPlexMono-Regular.woff");
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   src: url("../assets/fonts/IBMPlexMono-Bold.woff2"), url("../assets/fonts/IBMPlexMono-Bold.woff");
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   src: url("../assets/fonts/ArchivoBlack-Regular.woff2"), url("../assets/fonts/ArchivoBlack-Regular.woff");
   font-style: normal;
   font-weight: 400;
+  font-display: block;
 }
 
 body {
@@ -114,7 +117,7 @@ p {
     position: relative;
 
     &::after {
-      content: "Menu";
+      content: "Cases studies";
       display: block;
       transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1);
     }
