@@ -87,3 +87,9 @@ links.forEach(link => {
     ended && e.target.classList.add('link--loadingRight')
   })
 })
+
+console.log(navigator.userAgent)
+console.log()
+
+const title = document.querySelector('.title--switch')
+navigator.userAgent.search('Chrome') > -1 && navigator.userAgent.search('Windows') > -1 && title.classList.add('title--win')

@@ -126,6 +126,10 @@ p {
     }
   }
 
+  &--win {
+    height: 70%;
+  }
+
   &__content {
     display: block;
     transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1);
@@ -347,12 +351,12 @@ p {
     height: 60px;
     width: 60px;
     z-index: 10;
+    cursor: pointer;
   }
 
   &::before,
   &::after {
     transition: opacity 700ms cubic-bezier(0.725, 0, 0.275, 1);
-    cursor: pointer;
     content: "";
     position: absolute;
     width: 100%;
