@@ -4,6 +4,7 @@ const button = document.querySelector('.button__clickArea')
 const overlay = document.querySelector('.section--overlay')
 const links = document.querySelectorAll('.link--big')
 const networkMenu = document.querySelector('.networkMenu')
+const title = document.querySelector('.title--switch')
 let menuOpen = false
 let ended = false
 
@@ -88,8 +89,4 @@ links.forEach(link => {
   })
 })
 
-console.log(navigator.userAgent)
-console.log()
-
-const title = document.querySelector('.title--switch')
 navigator.userAgent.search('Chrome') > -1 && navigator.userAgent.search('Windows') > -1 && title.classList.add('title--win')
