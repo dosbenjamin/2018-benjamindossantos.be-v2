@@ -111,9 +111,13 @@ p {
   &--switch {
     margin: 0;
     overflow: hidden;
-    line-height: 1rem;
-    height: 1rem;
+    height: 70%;
     position: relative;
+    line-height: 1rem;
+
+    @supports (-webkit-font-smoothing: antialiased) {
+      height: 80%;
+    }
 
     &::after {
       content: "Cases studies";
@@ -300,10 +304,7 @@ p {
 }
 
 .button {
-  background-image: url("../assets/images/burger.svg");
   background-color: inherit;
-  background-repeat: no-repeat;
-  background-position: center;
   display: inline-block;
   text-indent: 100%;
   white-space: nowrap;
@@ -312,7 +313,7 @@ p {
   padding: 0;
   width: 17px;
   height: 17px;
-  transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1), background-image 700ms cubic-bezier(0.725, 0, 0.275, 1);
+  transition: transform 700ms cubic-bezier(0.725, 0, 0.275, 1);
   transform: rotateZ(0);
   transform-origin: center;
   position: relative;
@@ -345,11 +346,30 @@ p {
     right: -20px;
     height: 60px;
     width: 60px;
+    z-index: 10;
+  }
+
+  &::before,
+  &::after {
+    transition: opacity 700ms cubic-bezier(0.725, 0, 0.275, 1);
+    cursor: pointer;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: inherit;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &::before {
+    background-image: url("../assets/images/burger.svg");
   }
 
   &::after {
-    content: "";
-    display: none;
+    opacity: 0;
     background-image: url("../assets/images/cross.svg");
   }
 }
@@ -428,7 +448,14 @@ p {
   }
 
   .button {
-    background-image: url("../assets/images/cross.svg");
+    &::before {
+      opacity: 0;
+    }
+
+    &::after {
+      opacity: 1;
+    }
+
     transform: rotateZ(90deg);
   }
 }

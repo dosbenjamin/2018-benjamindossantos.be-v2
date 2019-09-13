@@ -84,7 +84,7 @@
     height: 75%;
     width: 80vw;
     position: relative;
-    top: -10px;
+    top: -9px;
 
     @include desktop {
       height: 65vh;
@@ -97,7 +97,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      top: 10px;
+      top: 9px;
+      height: 18px;
       z-index: 4;
 
       @include desktop {
