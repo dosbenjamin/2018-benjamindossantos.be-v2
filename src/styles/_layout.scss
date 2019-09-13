@@ -49,6 +49,10 @@
     @include desktop {
       padding: rythm-units-desktop(4) rythm-units-desktop(1);
     }
+
+    .container__wrapper--header {
+      height: initial;
+    }
   }
 
   &::before {
@@ -282,6 +286,10 @@
 
   &__listItem {
     line-height: 1;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
   }
 }
 
